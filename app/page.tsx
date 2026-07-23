@@ -1061,7 +1061,9 @@ export default function Page() {
           <span className="text-[12px] text-zinc-600 ml-1">
             View: {view} {view === 'directory' && '• Directory Active • 18 fields'} {view === 'map' && '• Map Active • 18 fields mapped'} • {navLabel} tick:{navTick} • {sbStatus}
           </span>
-          <button
+          
+          {/* Add field Modal  */}
+          {/* <button
             type="button"
             onClick={() => {
               if (!user) { setShowAuth(true); setAuthTab('guest'); return; }
@@ -1070,7 +1072,7 @@ export default function Page() {
             className="whitespace-nowrap px-5 py-2.5 rounded-full bg-[#166534] text-white text-sm font-medium hover:bg-[#14532d]"
           >
             + Add Field
-          </button>
+          </button> */}
         </div>
 
       </div>
@@ -1185,7 +1187,7 @@ export default function Page() {
                   className="w-full bg-white border border-zinc-200 rounded-full px-5 py-2.5 text-sm outline-none focus:border-[#166534] focus:ring-2 focus:ring-[#166534]/10"
                 />
               </div>
-              {/* <button
+              <button
                 type="button"
                 onClick={() => {
                   if (!user) { setShowAuth(true); setAuthTab('guest'); return; }
@@ -1194,7 +1196,7 @@ export default function Page() {
                 className="whitespace-nowrap px-5 py-2.5 rounded-full bg-[#166534] text-white text-sm font-medium hover:bg-[#14532d]"
               >
                 + Add Field
-              </button> */}
+              </button>
             </div>
           </div>
 
