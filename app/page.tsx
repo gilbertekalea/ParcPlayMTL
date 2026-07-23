@@ -977,7 +977,7 @@ export default function Page() {
             }}
             className="flex items-center gap-3 text-left"
           >
-            <div className="w-9 h-9 rounded-full bg-[#166534] text-white grid place-items-center font-bold text-[16px]">M</div>
+            <div className="w-9 h-9 rounded-full bg-[#166534] text-white grid place-items-center font-bold text-[16px]">PPM</div>
             <div>
               <div className="font-semibold tracking-tight leading-none">ParcPlay MTL</div>
               <div className="text-[11px] text-zinc-500 uppercase tracking-widest mt-1">18 Verified Fields • {sbStatus === 'Connected ✓' ? 'Supabase Live' : 'Open Data'}</div>
@@ -1061,7 +1061,18 @@ export default function Page() {
           <span className="text-[12px] text-zinc-600 ml-1">
             View: {view} {view === 'directory' && '• Directory Active • 18 fields'} {view === 'map' && '• Map Active • 18 fields mapped'} • {navLabel} tick:{navTick} • {sbStatus}
           </span>
+          <button
+            type="button"
+            onClick={() => {
+              if (!user) { setShowAuth(true); setAuthTab('guest'); return; }
+              setShowAdd(true);
+            }}
+            className="whitespace-nowrap px-5 py-2.5 rounded-full bg-[#166534] text-white text-sm font-medium hover:bg-[#14532d]"
+          >
+            + Add Field
+          </button>
         </div>
+
       </div>
 
       {/* LANDING */}
@@ -1174,7 +1185,7 @@ export default function Page() {
                   className="w-full bg-white border border-zinc-200 rounded-full px-5 py-2.5 text-sm outline-none focus:border-[#166534] focus:ring-2 focus:ring-[#166534]/10"
                 />
               </div>
-              <button
+              {/* <button
                 type="button"
                 onClick={() => {
                   if (!user) { setShowAuth(true); setAuthTab('guest'); return; }
@@ -1183,7 +1194,7 @@ export default function Page() {
                 className="whitespace-nowrap px-5 py-2.5 rounded-full bg-[#166534] text-white text-sm font-medium hover:bg-[#14532d]"
               >
                 + Add Field
-              </button>
+              </button> */}
             </div>
           </div>
 
