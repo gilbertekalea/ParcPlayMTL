@@ -27,7 +27,7 @@ type Field = {
   votes: number;
   lat: number;
   lng: number;
-};
+};l
 
 type Activity = {
   id: string;
