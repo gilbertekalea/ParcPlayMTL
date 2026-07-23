@@ -1822,27 +1822,27 @@ CREATE POLICY "allow all for anon" ON activity_logs FOR ALL USING (true) WITH CH
       className="w-full border border-zinc-200 rounded-xl px-4 py-2.5 text-sm bg-white appearance-none pr-10 focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600 outline-none transition text-zinc-800 font-medium cursor-pointer"
     >
       <option value="" disabled>Select a borough...</option>
-      
+  
       {/* Montreal Boroughs List */}
       <option value="Ahuntsic-Cartierville">Ahuntsic-Cartierville</option>
       <option value="Anjou">Anjou</option>
-      <option value="Côte-des-Neiges–Notre-Dame-de-Grâce">Côte-des-Neiges–Notre-Dame-de-Grâce</option>
-      <option value="L'Île-Bizard–Sainte-Geneviève">L'Île-Bizard–Sainte-Geneviève</option>
+      <option value="Côte-des-Neiges-Notre-Dame-de-Grâce">Côte-des-Neiges-Notre-Dame-de-Grâce</option>
+      <option value="L'Île-Bizard-Sainte-Geneviève">L'Île-Bizard-Sainte-Geneviève</option>
       <option value="Lachine">Lachine</option>
       <option value="LaSalle">LaSalle</option>
       <option value="Le Plateau-Mont-Royal">Le Plateau-Mont-Royal</option>
       <option value="Le Sud-Ouest">Le Sud-Ouest</option>
-      <option value="Mercier–Hochelaga-Maisonneuve">Mercier–Hochelaga-Maisonneuve</option>
+      <option value="Mercier-Hochelaga-Maisonneuve">Mercier-Hochelaga-Maisonneuve</option>
       <option value="Montréal-Nord">Montréal-Nord</option>
       <option value="Outremont">Outremont</option>
       <option value="Pierrefonds-Roxboro">Pierrefonds-Roxboro</option>
-      <option value="Rivière-des-Prairies–Pointe-aux-Trembles">Rivière-des-Prairies–Pointe-aux-Trembles</option>
-      <option value="Rosemont–La Petite-Patrie">Rosemont–La Petite-Patrie</option>
+      <option value="Rivière-des-Prairies-Pointe-aux-Trembles">Rivière-des-Prairies-Pointe-aux-Trembles</option>
+      <option value="Rosemont-La Petite-Patrie">Rosemont-La Petite-Patrie</option>
       <option value="Saint-Laurent">Saint-Laurent</option>
       <option value="Saint-Léonard">Saint-Léonard</option>
       <option value="Verdun">Verdun</option>
       <option value="Ville-Marie">Ville-Marie</option>
-      <option value="Villeray–Saint-Michel–Parc-Extension">Villeray–Saint-Michel–Parc-Extension</option>
+      <option value="Villeray-Saint-Michel-Parc-Extension">Villeray-Saint-Michel-Parc-Extension</option>
     </select>
                   {/* Clean custom downward arrow icon indicator */}
                   
