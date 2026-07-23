@@ -673,13 +673,22 @@ export default function Page() {
       let createClient: any = null;
       let importError1: any = null;
       let importError2: any = null;
+      // try {
+      //   const mod: any = await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm');
+      //   createClient = mod.createClient;
+      //   setSbImportLog('✅ jsDelivr OK');
+      // } catch (e1: any) {
+      //   importError1 = e1;
+      //   setSbImportLog(`jsDelivr failed: ${e1?.message || e1}. Trying esm.sh...`)
+      // ;
+        // ✅ REPLACE WITH THIS:
       try {
-        const mod: any = await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm');
-        createClient = mod.createClient;
-        setSbImportLog('✅ jsDelivr OK');
-      } catch (e1: any) {
-        importError1 = e1;
-        setSbImportLog(`jsDelivr failed: ${e1?.message || e1}. Trying esm.sh...`);
+          // Use the compiled client library already imported at the top of the file
+          setSbImportLog('✅ Local NPM package OK');
+          } catch (e1: any) {
+          setSbImportLog('❌ Import failed');
+          }
+
         try {
           const mod2: any = await import('https://esm.sh/@supabase/supabase-js@2.45.0');
           createClient = mod2.createClient;
