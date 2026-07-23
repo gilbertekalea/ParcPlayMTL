@@ -1722,7 +1722,7 @@ CREATE POLICY "allow all for anon" ON activity_logs FOR ALL USING (true) WITH CH
         <div className="fixed inset-0 bg-black/50 z-[60] flex items-center justify-center p-4">
           <div className="bg-white rounded-2xl max-w-[420px] w-full p-6 shadow-2xl">
             <div className="flex items-center justify-between">
-              <h3 className="font-semibold text-[18px]"> ParcPlay MTL </h3>
+              <h3 className="font-semibold text-[25px]"> ParcPlay MTL </h3>
               <button type="button" onClick={() => setShowAuth(false)} className="w-8 h-8 grid place-items-center rounded-full border hover:bg-zinc-50">✕</button>
             </div>
 
@@ -1796,8 +1796,8 @@ CREATE POLICY "allow all for anon" ON activity_logs FOR ALL USING (true) WITH CH
           <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 shadow-2xl">
             <div className="flex justify-between items-start gap-4">
               <div>
-                <h3 className="font-semibold text-[18px]">Add Eco Field</h3>
-                <p className="text-[12px] text-zinc-600 mt-1">Contribute a new Montreal field. It will show as 👤 Real Person.</p>
+                <h3 className="font-semibold text-[18px]">Add Eco-Fieldly Field/Park</h3>
+                <p className="text-[10px] text-zinc-600 mt-1">Know a great Montreal spot? Add it to help others discover it. Your contribution will appear as 👤 Real Person.</p>
               </div>
               <button type="button" onClick={() => setShowAdd(false)} className="w-8 h-8 grid place-items-center rounded-full border hover:bg-zinc-50">✕</button>
             </div>
@@ -1812,9 +1812,46 @@ CREATE POLICY "allow all for anon" ON activity_logs FOR ALL USING (true) WITH CH
                 <input value={newField.address} onChange={e => setNewField({ ...newField, address: e.target.value })} placeholder="123 Rue..." className="mt-1 w-full border border-zinc-200 rounded-xl px-4 py-2.5 text-sm" />
               </div>
               <div>
-                <label className="text-[11px] uppercase tracking-wide font-semibold text-zinc-600">Borough</label>
-                <input value={newField.borough} onChange={e => setNewField({ ...newField, borough: e.target.value })} placeholder="Le Plateau-Mont-Royal" className="mt-1 w-full border border-zinc-200 rounded-xl px-4 py-2.5 text-sm" />
-              </div>
+  <label className="text-[11px] uppercase tracking-wide font-semibold text-zinc-600 block mb-1">
+    Borough
+  </label>
+  <div className="relative">
+    <select
+      value={newField.borough}
+      onChange={(e) => setNewField({ ...newField, borough: e.target.value })}
+      className="w-full border border-zinc-200 rounded-xl px-4 py-2.5 text-sm bg-white appearance-none pr-10 focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600 outline-none transition text-zinc-800 font-medium cursor-pointer"
+    >
+      <option value="" disabled>Select a borough...</option>
+      
+      {/* Montreal Boroughs List */}
+      <option value="Ahuntsic-Cartierville">Ahuntsic-Cartierville</option>
+      <option value="Anjou">Anjou</option>
+      <option value="Côte-des-Neiges–Notre-Dame-de-Grâce">Côte-des-Neiges–Notre-Dame-de-Grâce</option>
+      <option value="L'Île-Bizard–Sainte-Geneviève">L'Île-Bizard–Sainte-Geneviève</option>
+      <option value="Lachine">Lachine</option>
+      <option value="LaSalle">LaSalle</option>
+      <option value="Le Plateau-Mont-Royal">Le Plateau-Mont-Royal</option>
+      <option value="Le Sud-Ouest">Le Sud-Ouest</option>
+      <option value="Mercier–Hochelaga-Maisonneuve">Mercier–Hochelaga-Maisonneuve</option>
+      <option value="Montréal-Nord">Montréal-Nord</option>
+      <option value="Outremont">Outremont</option>
+      <option value="Pierrefonds-Roxboro">Pierrefonds-Roxboro</option>
+      <option value="Rivière-des-Prairies–Pointe-aux-Trembles">Rivière-des-Prairies–Pointe-aux-Trembles</option>
+      <option value="Rosemont–La Petite-Patrie">Rosemont–La Petite-Patrie</option>
+      <option value="Saint-Laurent">Saint-Laurent</option>
+      <option value="Saint-Léonard">Saint-Léonard</option>
+      <option value="Verdun">Verdun</option>
+      <option value="Ville-Marie">Ville-Marie</option>
+      <option value="Villeray–Saint-Michel–Parc-Extension">Villeray–Saint-Michel–Parc-Extension</option>
+    </select>
+                  {/* Clean custom downward arrow icon indicator */}
+                  
+    <div className="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-zinc-400 text-[10px]">
+      ▼
+    </div>
+  </div>
+</div>
+
               <div>
                 <label className="text-[11px] uppercase tracking-wide font-semibold text-zinc-600">Surface</label>
                 <select value={newField.surface} onChange={e => setNewField({ ...newField, surface: e.target.value })} className="mt-1 w-full border border-zinc-200 rounded-xl px-4 py-2.5 text-sm bg-white">
