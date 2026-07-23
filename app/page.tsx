@@ -710,7 +710,6 @@ export default function Page() {
             throw new Error(`Both CDNs failed.\njsDelivr: ${msg1}\n esm.sh: ${msg2}`);
           }
         }
-      }
       if (!createClient) throw new Error('createClient not loaded');
       const client = createClient(cleanUrl, sbKey.trim());
       setSbClient(client);
