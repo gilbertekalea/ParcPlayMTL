@@ -1,4 +1,4 @@
-# Parc Play MTL
+# Montreal Sport Fields and Eco Friendly Parks
 
 *An open, community-driven map of Montreal's sport fields and eco-friendly parks — built to help residents find, verify, and share fields that support active living and sustainable access.*
 
