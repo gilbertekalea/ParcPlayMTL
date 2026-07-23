@@ -1851,7 +1851,7 @@ CREATE POLICY "allow all for anon" ON activity_logs FOR ALL USING (true) WITH CH
     </div>
   </div>
 </div>
-
+              {/* 8 lines */}
               <div>
                 <label className="text-[11px] uppercase tracking-wide font-semibold text-zinc-600">Surface</label>
                 <select value={newField.surface} onChange={e => setNewField({ ...newField, surface: e.target.value })} className="mt-1 w-full border border-zinc-200 rounded-xl px-4 py-2.5 text-sm bg-white">
@@ -1863,7 +1863,6 @@ CREATE POLICY "allow all for anon" ON activity_logs FOR ALL USING (true) WITH CH
               <div>
                 <label className="text-[11px] uppercase tracking-wide font-semibold text-zinc-600">Access</label>
                 <select value={newField.access} onChange={e => setNewField({ ...newField, access: e.target.value })} className="mt-1 w-full border border-zinc-200 rounded-xl px-4 py-2.5 text-sm bg-white">
-                  <option>Free</option>
                   <option>Free - Open Access</option>
                   <option>Free - Permit for Teams</option>
                   <option>Permit Only</option>
@@ -1881,10 +1880,72 @@ CREATE POLICY "allow all for anon" ON activity_logs FOR ALL USING (true) WITH CH
                 <label className="text-[11px] uppercase tracking-wide font-semibold text-zinc-600">Contact</label>
                 <input value={newField.contact} onChange={e => setNewField({ ...newField, contact: e.target.value })} placeholder="311 or email" className="mt-1 w-full border border-zinc-200 rounded-xl px-4 py-2.5 text-sm" />
               </div>
+
+              {/* Eco notes drop and drag starts here */}
+              
               <div className="md:col-span-2">
-                <label className="text-[11px] uppercase tracking-wide font-semibold text-zinc-600">Eco Notes</label>
-                <textarea value={newField.ecoNotes} onChange={e => setNewField({ ...newField, ecoNotes: e.target.value })} placeholder="Organic care, rain garden, LED..." className="mt-1 w-full border border-zinc-200 rounded-xl px-4 py-2.5 text-sm min-h-[80px]" />
+                <label className="text-[11px] uppercase tracking-wide font-semibold text-zinc-600 block mb-2"> Eco Attributes & Amenities</label>
+                {/* The Visual Input Box (Displays Selected Tags) */}
+                <div className="w-full border border-zinc-200 rounded-xl p-3 min-h-[52px] bg-white flex flex-wrap gap-2 items-center transition focus-within:border-emerald-600 focus-within:ring-1 focus-within:ring-emerald-600">
+                  {(() => {
+                    const selectedTags = newField.ecoNotes ? newField.ecoNotes.split(',').map(t => t.trim()).filter(Boolean): [];
+                    if (selectedTags.length === 0) {
+                      return <span className="text-zinc-400 text-sm pl-1">Click the attributes below to tag this field...</span>;
+                    }
+                    return selectedTags.map((tag) => (<span key={tag} className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs font-medium">{tag}
+                      <button type="button" onClick={() => {
+                        const updated = selectedTags.filter(t => t !== tag).join(', '); setNewField({ ...newField, ecoNotes: updated });
+                      }
+                      }
+                        className="w-3.5 h-3.5 rounded-full hover:bg-emerald-200/60 inline-flex items-center justify-center text-[10px] font-bold text-emerald-700 transition">✕</button></span>
+                    )
+                    );
+                    }
+                  )()
+                  }
+                </div>
+                {/* Clickable Pool of Predetermined Eco Notes */}
+                <div className="mt-3">
+                  <div className="text-[10px] uppercase tracking-wide text-zinc-400 font-bold mb-1.5">Available Tags:</div>
+                  <div className="flex flex-wrap gap-1.5">{
+                    [
+                      "Natural Grass",
+                      "No pesticides",
+                      "No Synthetic Fertilizers",
+                      "Good Drainage",
+                      "Bikes",
+                      "Metro - STM",
+                      "Community Maintained"].map((tag) => {
+                        const selectedTags = newField.ecoNotes ? newField.ecoNotes.split(',').map(t => t.trim()).filter(Boolean) : [];
+                        const isSelected = selectedTags.indexOf(tag) !== -1 ;
+                        return (<button key={tag} type="button" onClick={() => {
+                          let updatedTags;
+                          if (isSelected) {
+                            // Remove tag if already clicked
+                            updatedTags = selectedTags.filter(t => t !== tag);
+                          } else {
+                            // Add tag if new
+                            updatedTags = [...selectedTags, tag];
+                          }
+                          setNewField({ ...newField, ecoNotes: updatedTags.join(', ') });
+                        }
+                      } className={`px-3 py-1.5 rounded-xl text-xs font-medium border transition cursor-pointer ${isSelected ? 'bg-emerald-600 border-emerald-600 text-white shadow-sm shadow-emerald-600/10'
+                            : 'bg-zinc-50 border-zinc-200 text-zinc-600 hover:bg-zinc-100 hover:border-zinc-300'
+                        }`
+                      }
+                        >
+                          {isSelected ? '✓ ' : '+ '}
+                          {tag}
+                        </button>
+                        );
+                        }
+                    )
+                  }
+                  </div>
+                </div>
               </div>
+
+              {/* Eco notes drag and drop ends here  7 boxes from left */}
 
               <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-3 gap-4 bg-[#fafaf6] border border-zinc-200 rounded-xl p-4">
                 <div>
