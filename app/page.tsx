@@ -673,15 +673,8 @@ export default function Page() {
       let createClient: any = null;
       let importError1: any = null;
       let importError2: any = null;
-      // try {
-      //   const mod: any = await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm');
-      //   createClient = mod.createClient;
-      //   setSbImportLog('✅ jsDelivr OK');
-      // } catch (e1: any) {
-      //   importError1 = e1;
-      //   setSbImportLog(`jsDelivr failed: ${e1?.message || e1}. Trying esm.sh...`)
-      // ;
-        // ✅ REPLACE WITH THIS:
+      
+        // ✅ REPLACE WITH THIS fro:
       try {
           // Use the compiled client library already imported at the top of the file
           setSbImportLog('✅ Local NPM package OK');
@@ -689,27 +682,15 @@ export default function Page() {
           setSbImportLog('❌ Import failed');
           }
 
-        try {
-          const mod2: any = await import('https://esm.sh/@supabase/supabase-js@2.45.0');
-          createClient = mod2.createClient;
-          setSbImportLog(`jsDelivr failed (${(e1 as any)?.message || e1}), but esm.sh OK`);
-        } catch (e2: any) {
-          importError2 = e2;
-          const msg1 = importError1?.message || String(importError1);
-          const msg2 = importError2?.message || String(importError2);
-          const offline = msg1.includes('ERR_INTERNET_DISCONNECTED') || msg1.includes('Failed to fetch') || msg2.includes('ERR_INTERNET_DISCONNECTED') || msg2.includes('Failed to fetch') || msg1.includes('NetworkError') || msg2.includes('NetworkError') || msg1.includes('internet') || msg2.includes('internet');
-          if (offline) {
-            setSbStatus('offline-preview');
-            setSbError(`Preview sandbox is offline (no internet). Keys saved - will connect when deployed to Vercel/Netlify.\n\nDetails:\n- jsDelivr: ${msg1}\n- esm.sh: ${msg2}\n\nTest with curl when deployed:\ncurl ${cleanUrl}/rest/v1/fields -H "apikey: YOUR_ANON_KEY" -H "Authorization: Bearer YOUR_ANON_KEY"\n\nDemo mode keeps working with localStorage (${fields.length} fields).`);
-            try {
-              localStorage.setItem('sb_url', cleanUrl);
-              localStorage.setItem('sb_anon', sbKey.trim());
-            } catch {}
-            return;
-          } else {
-            throw new Error(`Both CDNs failed.\njsDelivr: ${msg1}\n esm.sh: ${msg2}`);
-          }
+      // ✅ INSERT THIS CLEAN INTERACTION BLOCK INSTEAD From google AI:
+      try {
+        if (typeof window !== 'undefined') {
+          setSbImportLog('✅ Local NPM module initialized successfully');
         }
+      } catch (npmError) {
+        setSbImportLog('❌ Local module mismatch');
+      }
+ 
       if (!createClient) throw new Error('createClient not loaded');
       const client = createClient(cleanUrl, sbKey.trim());
       setSbClient(client);
