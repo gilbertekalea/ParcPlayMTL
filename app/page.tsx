@@ -1722,7 +1722,7 @@ CREATE POLICY "allow all for anon" ON activity_logs FOR ALL USING (true) WITH CH
         <div className="fixed inset-0 bg-black/50 z-[60] flex items-center justify-center p-4">
           <div className="bg-white rounded-2xl max-w-[420px] w-full p-6 shadow-2xl">
             <div className="flex items-center justify-between">
-              <h3 className="font-semibold text-[18px]">Join Montreal Eco Soccer</h3>
+              <h3 className="font-semibold text-[18px]"> ParcPlay MTL </h3>
               <button type="button" onClick={() => setShowAuth(false)} className="w-8 h-8 grid place-items-center rounded-full border hover:bg-zinc-50">✕</button>
             </div>
 
