@@ -979,7 +979,7 @@ export default function Page() {
           >
             <div className="w-9 h-9 rounded-full bg-[#166534] text-white grid place-items-center font-bold text-[16px]">M</div>
             <div>
-              <div className="font-semibold tracking-tight leading-none">Montreal Eco Soccer</div>
+              <div className="font-semibold tracking-tight leading-none">ParcPlay MTL</div>
               <div className="text-[11px] text-zinc-500 uppercase tracking-widest mt-1">18 Verified Fields • {sbStatus === 'Connected ✓' ? 'Supabase Live' : 'Open Data'}</div>
             </div>
           </button>
