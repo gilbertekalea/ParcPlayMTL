@@ -1061,7 +1061,6 @@ export default function Page() {
           <span className="text-[12px] text-zinc-600 ml-1">
             View: {view} {view === 'directory' && '• Directory Active • 18 fields'} {view === 'map' && '• Map Active • 18 fields mapped'} • {navLabel} tick:{navTick} • {sbStatus}
           </span>
-          
           {/* Add field Modal  */}
           {/* <button
             type="button"
@@ -1729,9 +1728,122 @@ CREATE POLICY "allow all for anon" ON activity_logs FOR ALL USING (true) WITH CH
           </div>
         </div>
       )}
+      {/* AUTH MODAL GOOGLE VERSION */}
 
-      {/* AUTH MODAL */}
-      {showAuth && (
+      {showAuth && ( 
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+
+          {/* Premium backdrop blur background */}
+          <div onClick={() => setShowAuth(false)} className="absolute inset-0 bg-zinc-950/40 backdrop-blur-md transition-opacity duration-300" />
+            
+          {/* Main Auth Card */}
+          <div className="relative w-full max-w-md bg-white rounded-3xl border border-zinc-200 shadow-2xl overflow-hidden z-10 flex flex-col transform transition-all duration-300 scale-100">
+            
+            {/* Visual Accent bar matching your brand color */}
+            <div className="h-1.5 w-full bg-[#166534]" /> <div className="p-6 md:p-8">
+              
+              {/* Close Button */}
+              <button onClick={() => setShowAuth(false)} className="absolute top-5 right-5 w-8 h-8 rounded-full border border-zinc-200 bg-white text-zinc-500 hover:text-zinc-900 shadow-sm flex items-center justify-center text-xs transition duration-200 cursor-pointer">
+                ✕ </button>
+                
+              {/* Branding Identity Header */}
+              <div className="flex flex-col items-center text-center mb-6 mt-2">
+                <div className="w-12 h-12 rounded-2xl bg-emerald-50 border border-emerald-100 text-[#166534] grid place-items-center font-black text-xl shadow-inner mb-3">
+                  🌱 </div>
+                <h2 className="text-xl font-bold tracking-tight text-zinc-900"> Join ParcPlay MTL </h2> <p className="text-xs text-zinc-500 mt-1 max-w-[260px]">
+                  Contribute data, verify active crowdsourced conditions, and track pitches.</p>
+              </div>
+
+              {/* Premium Tab Bar Controller */}
+              <div className="grid grid-cols-2 p-1 bg-zinc-100/80 rounded-xl border border-zinc-200/40 mb-6">
+                <button type="button" onClick={() => setAuthTab('guest')} className={`py-2 rounded-lg text-xs font-semibold tracking-wide transition duration-200 cursor-pointer ${authTab === 'guest' ? 'bg-white text-zinc-900 shadow-sm' : 'text-zinc-500 hover:text-zinc-800'
+
+                  }`
+                }
+                >
+                  🚀{
+                    'Guest Account'
+                  } </button>
+                <button type="button" onClick={() => setAuthTab('account')} className={`py-2 rounded-lg text-xs font-semibold tracking-wide transition duration-200 cursor-pointer ${authTab === 'account' ? 'bg-[#166534] text-white shadow-sm'
+                  : 'text-zinc-500 hover:text-zinc-800'
+                  }`
+                }
+                >
+                  🔒
+                  {
+                    // t.createAccount
+                    "Verified Account"
+                  }
+                </button>
+              </div>
+              {/* Form Inputs */}
+              <form onSubmit={(e) => {
+                e.preventDefault();
+                // Uses your original state mapping logic to assign the user object:
+                if (authTab === 'guest') {
+                  setUser(
+                    {
+                      name: 'Anonymous Scout', type:'guest'
+                    }
+                  );
+                }
+                else {
+                  setUser({ name: 'Verified Player', type:'registered' }); // Change this value to map an input state if you have one
+                }
+                setShowAuth(false);
+              }
+              }
+                className="space-y-4">
+                {
+                  authTab === 'guest' ? (
+                    <div className="space-y-1.5 animate-fadeIn">
+                      <label className="text-[11px] uppercase tracking-wide font-bold text-zinc-500">
+                        Access Tier </label>
+                      <div className="w-full border border-zinc-200 rounded-xl px-4 py-3 text-sm bg-zinc-50/50 text-zinc-600 font-medium"> Quick Anonymous Mode </div>
+                      <p className="text-[11px] text-zinc-400 pt-1 leading-normal"> Guest accounts skip passwords to log fields instantly onto your machine’s cache memory. </p> </div>
+                  ) : ( 
+                      <div className="space-y-4 animate-fadeIn">
+                        <div className="space-y-1.5">
+                          <label className="text-[11px] uppercase tracking-wide font-bold text-zinc-500"> Email Address </label>
+                          <input type="email" required placeholder="scout@parcplay.ca" className="w-full border border-zinc-200 rounded-xl px-4 py-3 text-sm bg-white placeholder-zinc-400 font-medium focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600 outline-none transition"/>
+                        </div>
+                        <div className="space-y-1.5">
+                          <label className="text-[11px] uppercase tracking-wide font-bold text-zinc-500">
+                            Secure Password
+                          </label>
+                          <input
+                            type="password"
+                            required
+                            placeholder="••••••••"
+                            className="w-full border border-zinc-200 rounded-xl px-4 py-3 text-sm bg-white placeholder-zinc-400 font-medium focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600 outline-none transition"
+                          />
+                        </div>
+                      </div>
+                    )
+                }
+                {/* Action Trigger Button */}
+                <button
+                  type="submit"
+                  className={`w-full mt-6 py-3.5 rounded-xl text-sm font-bold tracking-wide transition shadow-lg flex items-center justify-center gap-2 cursor-pointer text-white ${
+                    authTab === 'account'
+                      ? 'bg-[#166534] hover:bg-[#115329] shadow-emerald-900/10'
+                      : 'bg-zinc-900 hover:bg-zinc-800 shadow-zinc-900/10'
+                  }`
+                  }
+                >
+                  {authTab === 'guest' ? "Explore as Guest ➔" : "Create Verified Account ✓"}
+                </button>
+                </form>
+            </div>
+          </div>
+          </div>
+      )
+      }
+
+
+
+      {/* AUTH MODAL META VERSION*/}
+      {/* {showAuth && (
         <div className="fixed inset-0 bg-black/50 z-[60] flex items-center justify-center p-4">
           <div className="bg-white rounded-2xl max-w-[420px] w-full p-6 shadow-2xl">
             <div className="flex items-center justify-between">
@@ -1801,7 +1913,7 @@ CREATE POLICY "allow all for anon" ON activity_logs FOR ALL USING (true) WITH CH
             )}
           </div>
         </div>
-      )}
+      )} */}
 
       {/* ADD FIELD MODAL */}
       {showAdd && (
